@@ -1,0 +1,29 @@
+              <div class="section row" id="spy1">
+                      <div class="col-md-11">
+                        <label for="firstname" class="field prepend-icon">
+                             <%= e.text_field :name, class: "gui-input" , placeholder: "Enter Country Name", autofocus: true, required: true %>
+                          <label for="firstname" class="field-icon">
+                            <i class="fa fa-user"></i>
+                          </label>
+                        </label>
+                      </div>
+                     <div class="col-md-1">
+                    <%= link_to_remove_fields_1 '<i class = "glyphicon glyphicon-trash"></i>'.html_safe, e, class: "icon"%>
+                    </div>
+                      <!-- end section -->
+
+                      <!-- end section -->
+                    
+                    <!-- end .section row section -->
+
+                     <div class="section-divider mt20 mb40">
+                      <span> Dialer List </span>
+                    </div>
+                    <div class="section row">
+                    <div class="col-md-12 sections-wrapper78" >
+                      <%= e.fields_for :dialer_plan_lists do |dialer_plan_list| %>             
+                        <%= render partial: "dialer_plan_list_fields", :locals => { :e => dialer_plan_list }%>                    
+                      <%end%>  
+                    </div>
+                    
+                    </div>

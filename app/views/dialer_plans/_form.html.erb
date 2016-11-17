@@ -1,0 +1,68 @@
+ <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
+
+              <div class="panel heading-border">
+
+                  <%= form_for @dialer_plan,novalidate: true,required: false,id: "form_submit",:multipart => true  do |e| %>
+
+                  <div class="panel-body bg-light">
+
+                    <div class="section-divider mt20 mb40">
+                      <span> Create Dialer Plan </span>
+                    </div>
+                    <!-- .section-divider -->
+
+                    <div class="section row" id="spy1">
+                      <div class="col-md-12">
+                        <label for="firstname" class="field prepend-icon">
+                             <%= e.text_field :name, class: "gui-input" , placeholder: "Enter Daily Plan ", autofocus: true, required: true %>
+                          <label for="firstname" class="field-icon">
+                            <i class="fa fa-user"></i>
+                          </label>
+                        </label>
+                      </div>
+                    </div>
+
+                     <div class="section-divider mt20 mb40">
+                      <span> Dialer List </span>
+                    </div>
+                    <div class="section row">
+                    <div class="col-md-12 sections-wrapper78" >
+                      <%= e.fields_for :dialer_plan_lists do |dialer_plan_list| %>             
+                        <%= render partial: "dialer_plan_list_fields", :locals => { :e => dialer_plan_list }%>                    
+                      <%end%>  
+                    </div>
+
+                   <!--   < %= link_to_add_fields_3 raw('<span class="fa fa-plus"></span>')+" Add Dialer", e, :dialer_plan_lists,class: "btn btn-rounded btn-xs pull-right hide_add",'data-no-turbolink' => false%> -->
+                    
+                    </div>
+                  
+                  <!-- end .form-body section -->
+                             <div class="panel-footer text-right">
+                    
+                    <%= e.submit "Submit", class: "button btn-primary", id: "submit_button" %>
+                    <%= link_to 'Back', dialer_plans_path, class: "button" %>
+                 
+                  </div>
+                  <!-- end .form-footer section -->
+               <%end%>
+
+              </div>
+
+            </div>
+<script type="text/javascript">
+ 
+  jQuery(document).ready(function() {
+
+    $("#content").addClass("table-layout");
+
+    $(".select2").select2();
+
+  $(".count_text").filter(function() { return $(this).css("display") != "none" }).length;
+  });
+
+$('#submit_button').click(function(){
+  $('.select_dialer').prop('disabled', false)
+})
+
+    
+</script>

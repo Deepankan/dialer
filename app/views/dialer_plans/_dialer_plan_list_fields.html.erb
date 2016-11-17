@@ -1,0 +1,33 @@
+<div class="section  fields count_text">
+   <div class="row" style="margin-bottom: 22px;">
+      <div class="col-md-6">
+         <label class="field select">
+         <%= e.select(:dialer_avaliable_id, options_for_select( @dialer_list, :selected => e.object.dialer_avaliable_id), {prompt: "Dialer Avaliable"}, class: "select2 gui-input select_dialer", style: "width:100%;", disabled: true)%>
+         <i class="arrow double"></i>
+         </label>
+      </div>
+      <div class="col-md-6">
+         <label for="mobile_phone" class="field prepend-icon">
+         <%= e.text_field :scheme,  class: "gui-input" , placeholder: "Enter Scheme " %>
+         <label for="mobile_phone" class="field-icon">
+         <i class="fa fa-mobile-phone"></i>
+         </label>
+         </label>
+      </div>
+
+   </div>
+</div>
+<script type="text/javascript">
+   jQuery(document).ready(function() {
+   
+     $("#content").addClass("table-layout");
+   
+     $(".select2").select2();
+   
+   
+   });
+   
+   
+   
+     
+</script>

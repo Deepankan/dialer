@@ -1,0 +1,77 @@
+ <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
+
+              <div class="panel heading-border">
+
+                  <%= form_for @country,novalidate: true,required: false,:multipart => true  do |e| %>
+
+                  <div class="panel-body bg-light">
+
+                    <div class="section-divider mt20 mb40">
+                      <span> Create Country </span>
+                    </div>
+                    <!-- .section-divider -->
+
+                    <div class="section row" id="spy1">
+                      <div class="col-md-6">
+                        <label for="firstname" class="field prepend-icon">
+                             <%= e.text_field :name, class: "gui-input" , placeholder: "Enter Country Name", autofocus: true, required: true %>
+                          <label for="firstname" class="field-icon">
+                            <i class="fa fa-user"></i>
+                          </label>
+                        </label>
+                      </div>
+                             <div class="col-md-6">
+                        <label for="firstname" class="field prepend-icon">
+                             <%= e.text_field :isd_code_name, class: "gui-input" , placeholder: "Enter Country ISD code", autofocus: true, required: true %>
+                          <label for="firstname" class="field-icon">
+                            <i class="fa fa-user"></i>
+                          </label>
+                        </label>
+                      </div>
+                      <!-- end section -->
+
+                 
+                      <!-- end section -->
+                    </div>
+                    <!-- end .section row section -->
+
+                     <div class="section-divider mt20 mb40">
+                      <span> Add State </span>
+                    </div>
+                    <div class="section row">
+                    <div class="col-md-12 sections-wrapper78" >
+                      <%= e.fields_for :states do |state_builder| %>             
+                        <%= render partial: "state_fields", :locals => { :e => state_builder }%>                    
+                      <%end%>  
+                    </div>
+                    <%= link_to_add_fields_3 raw('<span class="fa fa-plus"></span>')+" State", e, :states,class: "btn btn-rounded btn-xs pull-right",'data-no-turbolink' => false%>
+                    </div>
+           
+                  <!-- end .form-body section -->
+                             <div class="panel-footer text-right">
+                    
+                    <%= e.submit "Create", class: "button btn-primary"%>
+                    <%= link_to 'Back', countries_path, class: "button" %>
+                 
+                  </div>
+                  <!-- end .form-footer section -->
+               <%end%>
+
+              </div>
+
+            </div>
+<script type="text/javascript">
+ 
+  jQuery(document).ready(function() {
+
+    $("#content").addClass("table-layout");
+
+    $(".select2").select2();
+
+
+  });
+
+
+
+    
+</script>

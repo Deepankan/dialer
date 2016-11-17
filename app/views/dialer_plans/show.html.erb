@@ -1,0 +1,94 @@
+ <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
+
+              <div class="panel heading-border">
+
+                  <%= form_for @dialer_plan,novalidate: true,required: false,:multipart => true  do |e| %>
+
+                  <div class="panel-body bg-light">
+
+                    <div class="section-divider mt20 mb40">
+                      <span> View Dialer Plan </span>
+                    </div>
+                    <!-- .section-divider -->
+
+                    <div class="section row" id="spy1">
+                      <div class="col-md-12">
+                        <label for="firstname" class="field prepend-icon">
+                             <%= e.text_field :name, class: "gui-input" , placeholder: "Enter Daily Plan ", autofocus: true, required: true, readonly: true %>
+                          <label for="firstname" class="field-icon">
+                            <i class="fa fa-user"></i>
+                          </label>
+                        </label>
+                      </div>
+                    </div>
+
+                     <div class="section-divider mt20 mb40">
+                      <span> Dialer List </span>
+                    </div>
+                    <div class="section row">
+                    <div class="col-md-12 sections-wrapper78" >
+                      <%= e.fields_for :dialer_plan_lists do |e| %>             
+                        <div class="section  fields count_text">
+                      <div class="row" style="margin-bottom: 22px;">
+                       <div class="col-md-6">
+                                  <label class="field select">
+                                     <%= e.select(:dialer_avaliable_id, options_for_select( @dialer_list, :selected => e.object.dialer_avaliable_id), {prompt: "Dialer Avaliable"}, class: "select2 gui-input", style: "width:100%;", disabled: true)%>
+                                    <i class="arrow double"></i>
+                                  </label>
+
+                                       
+                         </div>  
+
+                          <div class="col-md-6">
+                          <label for="mobile_phone" class="field prepend-icon">
+                                 <%= e.text_field :scheme,  class: "gui-input" , placeholder: "Enter Scheme ", readonly: true %>
+                            <label for="mobile_phone" class="field-icon">
+                              <i class="fa fa-mobile-phone"></i>
+                            </label>
+                          </label>
+
+                                       
+                         </div>  
+
+
+
+ 
+ </div> 
+  
+
+</div>                    
+                      <%end%>  
+                    </div>
+
+                   <!--   < %= link_to_add_fields_3 raw('<span class="fa fa-plus"></span>')+" Add Dialer", e, :dialer_plan_lists,class: "btn btn-rounded btn-xs pull-right hide_add",'data-no-turbolink' => false%> -->
+                    
+                    </div>
+                  
+                  <!-- end .form-body section -->
+                             <div class="panel-footer text-right">
+                    
+                    <%= link_to 'Edit', edit_dialer_plan_path(@dialer_plan), class: "button btn-primary" %>
+                    <%= link_to 'Back', dialer_plans_path, class: "button" %>
+                 
+                  </div>
+                  <!-- end .form-footer section -->
+               <%end%>
+
+              </div>
+
+            </div>
+<script type="text/javascript">
+ 
+  jQuery(document).ready(function() {
+
+    $("#content").addClass("table-layout");
+
+    $(".select2").select2();
+
+  $(".count_text").filter(function() { return $(this).css("display") != "none" }).length;
+  });
+
+
+
+    
+</script>

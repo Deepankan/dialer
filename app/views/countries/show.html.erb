@@ -1,0 +1,50 @@
+
+<div class="page-heading center-block">
+   <div class="media clearfix">
+      <div class="media-body va-m" style="width:100%">
+      
+            <div class="section row">
+               <h2 class="media-heading" style="float:left;">
+                  <%= @country.name%> (<%= @country.isd_code_name%>)
+               </h2>
+                
+                  
+            </div>
+            
+    
+      
+
+
+
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col-md-12">
+      <div class="tab-block mb25">
+         <ul class="nav nav-tabs tabs-border nav-justified nav-tabs-color">
+            <%@country.states.each_with_index do |k, v|%>
+            <li class="<%=  'active' if v == 0  %>">
+               <a href="#tab<%= (v+1)%>" data-toggle="tab"><span class="imoon imoon-profile icon " style="font-size: initial;"></span> <%= k.name%></a>
+            </li>
+            <%end%>
+         </ul>
+         <div class="tab-content p20">
+            <%@country.states.each_with_index do |k, v|%>
+            <div id="tab<%= (v+1)%>" class="tab-pane <%=  'active' if v == 0  %>">
+               <div class="section row">
+                  <% k.cities.each do |h|%>
+                  <label class= "col-md-2 control-label black  mt10">City Name</label>
+                  <div class="col-md-4">
+                     <p class="form-control-static text-muted">: <%= h.name%></p>
+                  </div>
+                  <%end%>  	
+               </div>
+
+             
+            </div>
+            <%end%>		
+         </div>
+      </div>
+   </div>
+</div>

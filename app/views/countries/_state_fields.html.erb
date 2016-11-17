@@ -1,0 +1,34 @@
+<div class="section  fields">
+<div class="row" style="margin-bottom: 22px;">
+ <div class="col-md-11">
+    <label for="mobile_phone" class="field prepend-icon">
+           <%= e.text_field :name,  class: "gui-input" , placeholder: "Enter State Name " %>
+      <label for="mobile_phone" class="field-icon">
+        <i class="fa fa-mobile-phone"></i>
+      </label>
+    </label>
+
+                    <div class=" section-divider mv40" id="spy4">
+                      <span>  Add City </span>
+                    </div>
+                    <!-- .section-divider -->
+                    <div class=" section row">
+                    <div class="col-md-12 sections-wrapper2" id="rest">
+                      <%= e.fields_for :cities do |builder| %>             
+                        <%= render partial: "city_fields", :locals => { :e => builder }%>                    
+                      <%end%>  
+                    </div>
+                    <%= link_to_add_fields_2 raw('<span class="fa fa-plus"></span>')+"City", e, :cities,class: "btn btn-rounded btn-xs pull-right"%>
+                    </div>
+   </div>   
+  <div class="col-md-1">
+   <%= link_to_remove_fields_1 '<i class = "glyphicon glyphicon-trash"></i>'.html_safe, e, class: "icon"%>
+
+  </div>
+  <!-- end section -->
+
+ 
+ </div> 
+  
+
+</div>  
