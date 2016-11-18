@@ -11,15 +11,13 @@
                     </div>
                     <!-- .section-divider -->
 
-                    <div class="section row" id="spy1">
-                      <div class="col-md-12">
-                        <label for="firstname" class="field prepend-icon">
-                             <%= e.text_field :name, class: "gui-input" , placeholder: "Enter Daily Plan ", autofocus: true, required: true, readonly: true %>
-                          <label for="firstname" class="field-icon">
-                            <i class="fa fa-user"></i>
-                          </label>
-                        </label>
-                      </div>
+                  <div class="section row" id="spy1">
+                    
+                      <label class="field select">
+                         <%= e.select(:dialer_price_id, options_for_select(@dialer_price, :selected => @dialer_plan.dialer_price.name), {prompt: "Select Price"}, class: "select2 gui-input", style: "width:100%;", disabled: true)%>
+                        <i class="arrow double"></i>
+                      </label>
+                
                     </div>
 
                      <div class="section-divider mt20 mb40">

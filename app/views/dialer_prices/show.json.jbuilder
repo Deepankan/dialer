@@ -1,0 +1,1 @@
+json.partial! "dialer_prices/dialer_price", dialer_price: @dialer_price

@@ -14,7 +14,6 @@ class DialerAvaliablesController < ApplicationController
 
   def create
      @dialer = DialerAvaliable.new(dialer_params)
-
     respond_to do |format|
       if @dialer.save
         format.html { redirect_to dialer_avaliables_path, notice: 'Dialer was successfully created.' }

@@ -29,7 +29,7 @@
       <tbody>
         <% @dialer_plan.each do |dialer_plan|%>
           <tr>
-            <td class="text-center"><%= dialer_plan.name%></td>
+            <td class="text-center"><%= dialer_plan.dialer_price.name%></td>
            
             <td class="text-center">
               <%= link_to raw('<i class = "glyphicons glyphicons-edit"></i>')+" Edit", edit_dialer_plan_path(dialer_plan), class: "btn btn-xs mr10 show_year_plan" , id: dialer_plan.id%>

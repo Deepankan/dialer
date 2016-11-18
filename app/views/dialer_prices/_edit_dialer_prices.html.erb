@@ -1,0 +1,33 @@
+<div class="tray tray-center">
+   <div id="modal-form" class="popup-basic admin-form mfp-with-anim">
+      <div class="panel">
+         <div class="panel-heading">
+            <span class="panel-title">
+            <i class="fa fa-rocket"></i>Edit Dialer Prices</span>
+         </div>
+         <!-- end .panel-heading section -->
+         <%= form_for(@dialer_price) do |dialer_price| %>
+         <div class="panel-body p25">
+            <div class="section row">
+               <label for="firstname" class="field prepend-icon">
+               <%= dialer_price.text_field :name, class: "gui-input",placeholder: "Enter Dialer_prices Name" %>
+               <label for="firstname" class="field-icon">
+               <i class="fa fa-user"></i>
+               </label>
+               </label>
+               <!-- end section -->
+            </div>
+            <!-- end section row section -->   
+         </div>
+         <!-- end .form-body section -->
+         <div class="panel-footer">
+           
+            <%= dialer_price.submit "Update", class: "button btn-primary"%>
+         </div>
+         <!-- end .form-footer section -->
+         <%end%>
+      </div>
+      <!-- end: .panel -->
+      <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+   </div>
+</div>

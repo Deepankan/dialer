@@ -7,6 +7,12 @@ class DialerPlansController < ApplicationController
   end
 
   def new
+    @dialer_price = DialerPrice.get_list
+    list = current_user.dialer_plans.active.pluck(:dialer_price_id)
+    @dialer_price.each do |k,v|
+      @dialer_price.delete(k) if list.include?(v)
+    end
+
     @dialer_list =  DialerAvaliable.get_list
     @dialer_plan = current_user.dialer_plans.build
 
@@ -34,6 +40,15 @@ class DialerPlansController < ApplicationController
 
   def edit
     @dialer_list =  DialerAvaliable.get_list
+    list = current_user.dialer_plans.active.pluck(:dialer_price_id).reject{|h| h == @dialer_plan.dialer_price_id}
+    @dialer_price = DialerPrice.get_list
+
+    @dialer_price.each do |k,v|
+      @dialer_price.delete(k) if list.include?(v) 
+    end
+    
+
+
 
   end
 
@@ -58,6 +73,7 @@ class DialerPlansController < ApplicationController
   end
 
   def show
+    @dialer_price = DialerPrice.get_list
     @dialer_list =  DialerAvaliable.get_list
   end
 

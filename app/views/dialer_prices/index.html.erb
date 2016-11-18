@@ -1,0 +1,137 @@
+ <section id="content" class="table-layout animated fadeIn">
+
+<div class="panel">
+
+  
+  <div class="panel-heading index">
+
+    <span class="panel-icon">
+      <i class="glyphicons glyphicons-list"></i>
+    </span>
+    <span class="panel-title"> Dialer Price </span>
+  </div>
+
+  <div class="panel-body">
+  <div class="row">
+  <div class="col-md-2">
+  <%= link_to 'New dialer_prices', "#create_dialer_prices", title: "Create", "data-effect" => "mfp-flipInY",class: "btn btn-hover btn-success btn-block create_dialer_prices"%>
+  </div></div><br />
+  <div class="row">
+    <table class="table table-bordered table-hover" id="dialer_prices_datatable" cellspacing="0" width="100%">
+      <thead class="thead_bg">
+        <tr>
+          <th>Name</th>
+          <th>Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dialer_prices.each do |dialer_prices|%>
+          <tr>
+            <td><%= dialer_prices.name%></td>
+        
+            <td>
+             
+<!--             
+                < %= link_to '<i class = "glyphicon glyphicon-edit"></i>'.html_safe, "#edit_dialer_prices", class: "btn btn-xs edit_dialer_prices", title: "Edit", "data-effect" => "mfp-flipInY", id: dialer_prices.id%> -->
+         <!--        < %= link_to '<i class = "glyphicon glyphicon-remove"></i>'.html_safe,dialer_prices, method: :delete, data: { confirm: 'Are you sure?' }%> -->
+
+                 <%= link_to raw('<i class = "glyphicons glyphicons-edit"></i>')+" Edit",  "#edit_dialer_prices", class: "btn btn-xs edit_dialer_prices",title: "Edit", "data-effect" => "mfp-flipInY" , id: dialer_prices.id%>
+              <%= link_to raw('<i class = "glyphicon glyphicon-remove"></i>')+"Delete",dialer_prices, class: "btn btn-xs mr10 ",method: :delete,data: { confirm: 'Are you sure?' }, id: dialer_prices.id%>
+            
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>  
+  </div>
+  <div id="edit_dialer_prices" class=" theme-primary mfp-with-anim mfp-hide mt10">
+</div>
+ <div id="create_dialer_prices" class=" theme-primary mfp-with-anim mfp-hide mt10">
+</div>
+</div>
+</section>
+<script type="text/javascript">
+   $('.edit_dialer_prices').magnificPopup({
+      removalDelay: 500, //delay removal by X to allow out-animation
+      callbacks: {
+        beforeOpen: function(e) {
+          // we add a class to body indication overlay is active
+          // We can use this to alter any elements such as form popups
+          // that need a higher z-index to properly display in overlays
+            $('body').addClass('mfp-bg-open');
+            this.st.mainClass = this.st.el.attr('data-effect');
+            data={id: this.st.el.attr('id')};
+                $.ajax({
+                       url: "<%= edit_dialer_prices_path%>",
+                       data: data,
+                       datatype: "JSON"
+                       }).success(function(json){
+                        if(json.length > 0)
+                        {
+                          $("#edit_dialer_prices").empty().html(json).show();
+                          $("#edit_dialer_prices").removeAttr('tabindex');
+                        }
+                       });
+        },
+        afterClose: function(e) {
+          $('body').removeClass('mfp-bg-open');
+        }
+      },
+      midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    });
+$('.create_dialer_prices').magnificPopup({
+      removalDelay: 500, //delay removal by X to allow out-animation
+      callbacks: {
+        beforeOpen: function(e) {
+          // we add a class to body indication overlay is active
+          // We can use this to alter any elements such as form popups
+          // that need a higher z-index to properly display in overlays
+            $('body').addClass('mfp-bg-open');
+            this.st.mainClass = this.st.el.attr('data-effect');
+           
+                $.ajax({
+                       url: "/dialer_prices/new",
+                       datatype: "JSON"
+                       }).success(function(json){
+                        if(json.length > 0)
+                        {
+                        
+                          $("#create_dialer_prices").empty().html(json).show();
+                          $("#create_dialer_prices").removeAttr('tabindex');
+                        }
+                       });
+        },
+        afterClose: function(e) {
+          $('body').removeClass('mfp-bg-open');
+        }
+      },
+      midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    });
+  $(document).ready(function() {
+    
+    $("#content").addClass("table-layout");
+
+    $('#dialer_prices_datatable').dataTable({
+      "aoColumnDefs": [{
+        'bSortable': false
+      }],
+      "oLanguage": {
+        "oPaginate": {
+          "sPrevious": "",
+          "sNext": ""
+        }
+      },
+      "scrollX": 965,
+      "iDisplayLength": 10,
+      "aLengthMenu": [
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"]
+      ],
+      "sDom": '<"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>'
+    });
+
+    $('.dataTables_filter input').attr("placeholder", "Enter here...");
+    
+  });
+</script>

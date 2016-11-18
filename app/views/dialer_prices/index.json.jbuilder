@@ -1,0 +1,1 @@
+json.array! @dialer_prices, partial: 'dialer_prices/dialer_price', as: :dialer_price
