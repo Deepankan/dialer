@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :dialer_prices
+  
   get 'dialer_avaliables/edit_dialer' => 'dialer_avaliables#edit_dialer', as: :edit_dialer
-  get 'dialer_avaliables/edit_dialer_prices' => 'dialer_avaliables#edit_dialer_prices', as: :edit_dialer_prices
+  get 'dialer_prices/edit_dialer_prices' => 'dialer_prices#edit_dialer_prices', as: :edit_dialer_prices
   devise_for :users
-
+  
   resources :countries
   resources :states
   resources :cities
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :dialer_avaliables
   resources :dialer_plans
   resources :dialer_quantites
-
+  resources :dialer_prices
   
    devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"
